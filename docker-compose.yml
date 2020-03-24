@@ -6,8 +6,8 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - /tig/data/influxdb:/var/lib/influxdb
-      - /tig/conf/influxdb:/etc/influxdb/
+      - /home/student/projects/tig/data/influxdb:/var/lib/influxdb
+      - /home/student/projects/mqtt-telegraf-influxdb-grafana/conf/influxdb:/etc/influxdb/
     restart: always
 
   telegraf:
@@ -15,7 +15,7 @@ services:
     image: telegraf
     network_mode: "host"
     volumes:
-      - /tig/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - /home/student/projects/mqtt-telegraf-influxdb-grafana/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     
@@ -26,9 +26,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /tig/data/grafana:/var/lib/grafana
-      - /tig/log/grafana:/var/log/grafana
-      - /tig/conf/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - /home/student/projects/tig/data/grafana:/var/lib/grafana
+      - /home/student/projects/tig/log/grafana:/var/log/grafana
+      - /home/student/projects/mqtt-telegraf-influxdb-grafana/conf/grafana/grafana.ini:/etc/grafana/grafana.ini
     links:
       - influxdb
     restart: always
@@ -41,7 +41,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     volumes:
-      - /tig/conf/mqtt/:/mosquitto/config/
-      - /tig/data/mqtt/:/mosquitto/data/
-      - /tig/log/mqtt/:/mosquitto/log/
+      - /home/student/projects/mqtt-telegraf-influxdb-grafana/conf/mqtt/:/mosquitto/config/
+      - /home/student/projects/tig/data/mqtt/:/mosquitto/data/
+      - /home/student/projects/tig/log/mqtt/:/mosquitto/log/
     restart: always

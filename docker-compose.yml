@@ -28,7 +28,7 @@ services:
     volumes:
       - /home/student/projects/tig/data/grafana:/var/lib/grafana
       - /home/student/projects/tig/log/grafana:/var/log/grafana
-      - /home/student/projects/mqtt-telegraf-influxdb-grafana/conf/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - /home/student/projects/tig/conf/grafana/grafana.ini:/etc/grafana/grafana.ini
     links:
       - influxdb
     restart: always
